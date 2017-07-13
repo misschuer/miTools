@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import freemarker.core.ParseException;
@@ -22,11 +23,15 @@ import freemarker.template.TemplateNotFoundException;
 
 public class ProrocolTools {
 	private static Configuration cfg = null;
-	private static String struPackagePath = "cc.mi.generate.stru";
-	private static String struPath = "G:\\gradleProjects\\miTools\\src\\main\\java\\cc\\mi\\generate\\stru";
+	private static String generalPath = "G:\\gradleProjects\\miCore\\src\\main\\java\\cc\\mi\\core\\generate";
 	
-	private static String msgPackagePath = "cc.mi.generate.msg";
-	private static String msgPath = "G:\\gradleProjects\\miTools\\src\\main\\java\\cc\\mi\\generate\\msg";
+	private static String struPackagePath = "cc.mi.core.generate.stru";
+	private static String struPath = String.format("%s\\stru", generalPath);
+	
+	private static String msgPackagePath = "cc.mi.core.generate.msg";
+	private static String msgPath = String.format("%s\\msg", generalPath);
+	
+	private static String opcodePackagePath = "cc.mi.core.generate";
 	
 	private static Set<String> classNameSet = null;
 	
@@ -69,7 +74,8 @@ public class ProrocolTools {
 				if (list.size() > 0) {
 					list.add(line.trim());
 				}
-			}	
+			}
+			parseStru(list);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -123,7 +129,7 @@ public class ProrocolTools {
 		
 		URL url = ProrocolTools.class.getResource("/Cow.Msg");
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(url.getPath())));) {
-			
+			Map<Integer, String> opcodeHash = new HashMap<>();
 			List<String> list = new ArrayList<>();
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -135,7 +141,7 @@ public class ProrocolTools {
 				}
 				// 结尾
 				if ("".equals(line.trim())) {
-					parseMsg(list);
+					parseMsg(list, opcodeHash);
 					list.clear();
 					continue;
 				}
@@ -146,15 +152,17 @@ public class ProrocolTools {
 			}
 			
 			// 如果最后没有空行也试着解析一下
-			parseMsg(list);
+			parseMsg(list, opcodeHash);
+			// 生成协议号常量
+			parseOpcode(opcodeHash);
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private static void parseMsg(List<String> list) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+	private static void parseMsg(List<String> list, Map<Integer, String> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
 		// 小于4行就不需要有结构体
-		if (list.size() < 4) {
+		if (list.size() < 2) {
 			return;
 		}
 		
@@ -198,6 +206,7 @@ public class ProrocolTools {
 		hash.put("hasString", hasString);
 		hash.put("hasList", hasList);
 		hash.put("importSet", importSet);
+		opcodeHash.put(Integer.parseInt(params[ 2 ]), "MSG_" + params[ 0 ].toUpperCase() + " = %d;	//" + params[ 3 ]);
 		
 		System.out.println("parse msg " + params[ 0 ]);
 		Template template = cfg.getTemplate("msg.ftl");
@@ -207,5 +216,26 @@ public class ProrocolTools {
 		template.process(hash, pw);
 		pw.flush();
 		System.out.println(file.getPath() + " ...OK");
+	}
+	
+	private static void parseOpcode(Map<Integer, String> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+		Map<String, Object> hash = new HashMap<>();
+		
+		List<String> fields = new ArrayList<>();
+		for (Entry<Integer, String> entry : opcodeHash.entrySet()) {
+			String field = String.format(entry.getValue(), entry.getKey());
+			fields.add(field);
+		}
+		String className = "Opcodes";
+		hash.put("className", className);
+		hash.put("package", opcodePackagePath);
+		hash.put("fields", fields);
+		
+		Template template = cfg.getTemplate("opcode.ftl");
+		String pathname = generalPath + "\\" + className + ".java";
+		File file = new File(pathname);
+		PrintWriter pw = new PrintWriter(file);
+		template.process(hash, pw);
+		pw.flush();
 	}
 }
