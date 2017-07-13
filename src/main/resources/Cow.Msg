@@ -14,3 +14,11 @@ get_session,c2s,3,获得Session对象,STATUS_NEVER,False
 	sessionkey,String,False,
 	account,String,False,玩家id
 	version,String,False,版本
+
+#
+send_instance_result,s2c,375,副本结果,STATUS_NEVER,False
+	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
+	cd,byte,False,副本cd
+	list,item_reward_info,True,道具列表
+	type,byte,False,副本类型
+	data,String,False,额外数据

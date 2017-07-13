@@ -175,4 +175,8 @@ public class ${className} extends AbstractCoder  {
 	
 	</#if>
 	</#list>
+
+	public AbstractCoder newInstance() {
+		return new ${className}();
+	}
 }

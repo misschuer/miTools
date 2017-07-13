@@ -129,7 +129,7 @@ public class ProrocolTools {
 		
 		URL url = ProrocolTools.class.getResource("/Cow.Msg");
 		try (BufferedReader br = new BufferedReader(new FileReader(new File(url.getPath())));) {
-			Map<Integer, String> opcodeHash = new HashMap<>();
+			Map<Integer, OpcodeInfo> opcodeHash = new HashMap<>();
 			List<String> list = new ArrayList<>();
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -160,7 +160,7 @@ public class ProrocolTools {
 		}
 	}
 	
-	private static void parseMsg(List<String> list, Map<Integer, String> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+	private static void parseMsg(List<String> list, Map<Integer, OpcodeInfo> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
 		// 小于4行就不需要有结构体
 		if (list.size() < 2) {
 			return;
@@ -206,7 +206,9 @@ public class ProrocolTools {
 		hash.put("hasString", hasString);
 		hash.put("hasList", hasList);
 		hash.put("importSet", importSet);
-		opcodeHash.put(Integer.parseInt(params[ 2 ]), "MSG_" + params[ 0 ].toUpperCase() + " = %d;	//" + params[ 3 ]);
+		
+		int opcode = Integer.parseInt(params[ 2 ]);
+		opcodeHash.put(opcode, new OpcodeInfo(opcode, params[ 0 ], params[ 3 ], msgPackagePath, "MSG_" + params[ 0 ].toUpperCase()));
 		
 		System.out.println("parse msg " + params[ 0 ]);
 		Template template = cfg.getTemplate("msg.ftl");
@@ -218,18 +220,29 @@ public class ProrocolTools {
 		System.out.println(file.getPath() + " ...OK");
 	}
 	
-	private static void parseOpcode(Map<Integer, String> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
+	private static void parseOpcode(Map<Integer, OpcodeInfo> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
 		Map<String, Object> hash = new HashMap<>();
 		
-		List<String> fields = new ArrayList<>();
-		for (Entry<Integer, String> entry : opcodeHash.entrySet()) {
-			String field = String.format(entry.getValue(), entry.getKey());
-			fields.add(field);
+		int opcodeSize = 0;
+		List<Map<String, Object>> classInfos = new ArrayList<>();
+		for (Entry<Integer, OpcodeInfo> entry : opcodeHash.entrySet()) {
+			Map<String, Object> field = new HashMap<>();
+			int opcode = entry.getValue().getOpcode();
+			field.put("comment", entry.getValue().getComment());
+			field.put("opcode", opcode);
+			field.put("name", entry.getValue().getName());
+			field.put("package", entry.getValue().getPack());
+			field.put("var", entry.getValue().getVar());
+			classInfos.add(field);
+			if (opcodeSize < opcode) {
+				opcodeSize = opcode;
+			}
 		}
 		String className = "Opcodes";
 		hash.put("className", className);
 		hash.put("package", opcodePackagePath);
-		hash.put("fields", fields);
+		hash.put("opcodeSize", opcodeSize + 1);
+		hash.put("classInfos", classInfos);
 		
 		Template template = cfg.getTemplate("opcode.ftl");
 		String pathname = generalPath + "\\" + className + ".java";
@@ -237,5 +250,41 @@ public class ProrocolTools {
 		PrintWriter pw = new PrintWriter(file);
 		template.process(hash, pw);
 		pw.flush();
+	}
+	
+	static class OpcodeInfo {
+		private final int opcode;
+		private final String name;
+		private final String comment;
+		private final String pack;
+		private final String var;
+		
+		public OpcodeInfo(int opcode, String name, String comment, String pack, String var) {
+			this.opcode		= opcode;
+			this.name		= name;
+			this.comment	= comment;
+			this.pack		= pack;
+			this.var 		= var;
+		}
+
+		public int getOpcode() {
+			return opcode;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public String getComment() {
+			return comment;
+		}
+
+		public String getPack() {
+			return pack;
+		}
+
+		public String getVar() {
+			return var;
+		}
 	}
 }
