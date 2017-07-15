@@ -1,24 +1,21 @@
 #类型名称，注释
 
 #
-null_action,both,0,无效动作,STATUS_NEVER,False
+NullAction,external,0,无效动作,STATUS_NEVER,False
 
 #
-ping_pong,both,1,测试连接状态,STATUS_NEVER,False
+PingPong,external,1,测试连接状态,STATUS_NEVER,False
 
 #
-forced_into,c2s,2,踢掉在线的准备强制登陆,STATUS_NEVER,False
-
-#
-get_session,c2s,3,获得Session对象,STATUS_NEVER,False
+GetSession,external,3,获得Session对象,STATUS_NEVER,False
 	sessionkey,String,False,
 	account,String,False,玩家id
 	version,String,False,版本
 
 #
-send_instance_result,s2c,375,副本结果,STATUS_NEVER,False
+InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
-	list,item_reward_info,True,道具列表
+	list,ItemRewardInfo,True,道具列表
 	type,byte,False,副本类型
 	data,String,False,额外数据
