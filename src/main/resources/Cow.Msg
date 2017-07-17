@@ -7,7 +7,15 @@ NullAction,external,0,无效动作,STATUS_NEVER,False
 PingPong,external,1,测试连接状态,STATUS_NEVER,False
 
 #
-GetSession,external,3,获得Session对象,STATUS_NEVER,False
+ServerRegOpcode,internal,2,服务器注册消息号,STATUS_NEVER,False
+	opcodes,int,True,消息号
+	
+#
+ServerRegIdentity,internal,3,服务器注册身份信息,STATUS_NEVER,False
+	identity,byte,False,身份信息
+
+#
+GetSession,external,4,获得Session对象,STATUS_NEVER,False
 	sessionkey,String,False,
 	account,String,False,玩家id
 	version,String,False,版本
