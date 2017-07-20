@@ -16,10 +16,25 @@ ServerRegIdentity,internal,3,服务器注册身份信息,STATUS_NEVER,False
 
 #
 GetSession,external,4,获得Session对象,STATUS_NEVER,False
-	sessionkey,String,False,
-	account,String,False,玩家id
-	version,String,False,版本
+	fd,int,False,客户端连接网关服的fd
+	sessionkey,String,False,会话密钥
+	
+#
+CreateConnection,internal,5,客户端连接进来了,STATUS_NEVER,False
+	fd,int,False,客户端连接网关服的fd
+	remoteIp,String,False,客户端ip
+	remotePort,short,False,客户端网关
 
+#
+OperationResult,external,6,操作结果,STATUS_NEVER,False
+	type,short,False,操作类型
+	reason,short,False,造成结果的原因
+	data,String,False,参数
+
+#
+DestroyConnection,internal,7,销毁fd,STATUS_NEVER,False
+	fd,int,False,客户端连接网关服的fd
+	
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
