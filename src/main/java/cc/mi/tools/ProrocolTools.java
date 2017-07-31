@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
@@ -22,6 +24,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateNotFoundException;
 
 public class ProrocolTools {
+	static Logger logger = Logger.getLogger(ProrocolTools.class);
 	private static Configuration cfg = null;
 	private static String generalPath = "G:\\gradleProjects\\miCore\\src\\main\\java\\cc\\mi\\core\\generate";
 	
@@ -114,14 +117,14 @@ public class ProrocolTools {
 		hash.put("hasString", hasString);
 
 		classNameSet.add(params[ 0 ]);
-		System.out.println("doing " + params[ 0 ]);
+		logger.info("doing " + params[ 0 ]);
 		Template template = cfg.getTemplate("stru.ftl");
 		String pathname = struPath + "\\" + params[ 0 ] + ".java";
 		File file = new File(pathname);
 		PrintWriter pw = new PrintWriter(file);
 		template.process(hash, pw);
 		pw.flush();
-		System.out.println(file.getPath() + " ...OK");
+		logger.info(file.getPath() + " ...OK");
 	}
 	
 	
@@ -210,14 +213,14 @@ public class ProrocolTools {
 		int opcode = Integer.parseInt(params[ 2 ]);
 		opcodeHash.put(opcode, new OpcodeInfo(opcode, params[ 0 ], params[ 3 ], msgPackagePath, "MSG_" + params[ 0 ].toUpperCase()));
 		
-		System.out.println("parse msg " + params[ 0 ]);
+		logger.info("parse msg " + params[ 0 ]);
 		Template template = cfg.getTemplate("msg.ftl");
 		String pathname = msgPath + "\\" + params[ 0 ] + ".java";
 		File file = new File(pathname);
 		PrintWriter pw = new PrintWriter(file);
 		template.process(hash, pw);
 		pw.flush();
-		System.out.println(file.getPath() + " ...OK");
+		logger.info(file.getPath() + " ...OK");
 	}
 	
 	private static void parseOpcode(Map<Integer, OpcodeInfo> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {

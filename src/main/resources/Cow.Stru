@@ -2,5 +2,14 @@
 
 #道具奖励信息
 ItemRewardInfo,道具奖励信息
-	item_id,short,0,道具id
+	itemId,short,0,道具id
 	num,int,0,道具数量
+
+#玩家角色创建选择信息
+CharCreateInfo,玩家角色创建选择信息
+	name,String,0,名称
+	gender,byte,0,角色类别
+	level,short,0,等级
+	guid,String,0,唯一id
+	headId,int,0,头像
+	hairId,int,0,发型ID
