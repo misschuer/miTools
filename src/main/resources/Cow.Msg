@@ -9,10 +9,6 @@ PingPong,external,1,测试连接状态,STATUS_NEVER,False
 #
 ServerRegOpcode,internal,2,服务器注册消息号,STATUS_NEVER,False
 	opcodes,int,True,消息号
-	
-#
-ServerRegIdentity,internal,3,服务器注册身份信息,STATUS_NEVER,False
-	identity,byte,False,身份信息
 
 #
 GetSession,external,4,获得Session对象,STATUS_NEVER,False
@@ -23,7 +19,7 @@ GetSession,external,4,获得Session对象,STATUS_NEVER,False
 CreateConnection,internal,5,客户端连接进来了,STATUS_NEVER,False
 	fd,int,False,客户端连接网关服的fd
 	remoteIp,String,False,客户端ip
-	remotePort,short,False,客户端网关
+	remotePort,int,False,客户端网关
 
 #
 OperationResult,external,6,操作结果,STATUS_NEVER,False
