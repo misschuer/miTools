@@ -26,7 +26,7 @@ import freemarker.template.TemplateNotFoundException;
 public class ProrocolTools {
 	static Logger logger = Logger.getLogger(ProrocolTools.class);
 	private static Configuration cfg = null;
-	private static String generalPath = "G:\\gradleProjects\\miCore\\src\\main\\java\\cc\\mi\\core\\generate";
+	private static String generalPath = "C:\\Users\\gy\\git\\micore\\src\\main\\java\\cc\\mi\\core\\generate";
 	
 	private static String struPackagePath = "cc.mi.core.generate.stru";
 	private static String struPath = String.format("%s\\stru", generalPath);

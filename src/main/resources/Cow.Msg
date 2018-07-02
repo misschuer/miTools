@@ -40,9 +40,17 @@ CreateChar,external,10,创建角色,STATUS_NEVER,False
 	charData,CharCreateInfo,False,角色信息
 
 #
+IdentityServerMsg,internal,11,通知服务器身份,STATUS_NEVER,False
+	serverType,int,False,服务器身份
+	
+#
+ServerStartFinishMsg,internal,12,通知网关服启动完成,STATUS_NEVER,False
+	
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
 	list,ItemRewardInfo,True,道具列表
 	type,byte,False,副本类型
 	data,String,False,额外数据
+	
