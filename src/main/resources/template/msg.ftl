@@ -1,9 +1,9 @@
 package ${package};
 
 import io.netty.buffer.ByteBuf;
-import cc.mi.core.coder.AbstractCoder;
+import cc.mi.core.packet.PacketImpl;
 <#if hasString>
-import cc.mi.core.coder.StringCoder;
+import cc.mi.core.packet.StringCoder;
 </#if>
 <#if hasList>
 import java.util.List;
@@ -16,7 +16,7 @@ ${imp}
 /**
  * ${comment}
  **/
-public class ${className} extends AbstractCoder  {
+public class ${className} extends PacketImpl  {
 	<#list fields as field>
 	//${field.comment}
 	<#if !field.isList>
@@ -176,7 +176,7 @@ public class ${className} extends AbstractCoder  {
 	</#if>
 	</#list>
 
-	public AbstractCoder newInstance() {
+	public PacketImpl newInstance() {
 		return new ${className}();
 	}
 }

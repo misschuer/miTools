@@ -45,7 +45,8 @@ IdentityServerMsg,internal,11,通知服务器身份,STATUS_NEVER,False
 	
 #
 ServerStartFinishMsg,internal,12,通知网关服启动完成,STATUS_NEVER,False
-	
+	bootstrap,boolean,False,启动状态
+
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)

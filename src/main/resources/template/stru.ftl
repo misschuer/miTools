@@ -2,7 +2,7 @@ package ${package};
 
 import io.netty.buffer.ByteBuf;
 <#if hasString>
-import cc.mi.core.coder.StringCoder;
+import cc.mi.core.packet.StringCoder;
 </#if>
 
 /**
