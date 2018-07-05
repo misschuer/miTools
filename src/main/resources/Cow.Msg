@@ -11,10 +11,10 @@ ServerRegOpcode,internal,2,服务器注册消息号,STATUS_NEVER,False
 	opcodes,int,True,消息号
 
 #
-GetSession,external,4,获得Session对象,STATUS_NEVER,False
+CheckSession,external,4,验证Session,STATUS_NEVER,False
 	fd,int,False,客户端连接网关服的fd
 	sessionkey,String,False,会话密钥
-	
+
 #
 CreateConnection,internal,5,客户端连接进来了,STATUS_NEVER,False
 	fd,int,False,客户端连接网关服的fd
@@ -42,6 +42,10 @@ IdentityServerMsg,internal,11,通知服务器身份,STATUS_NEVER,False
 #
 ServerStartFinishMsg,internal,12,通知网关服启动完成,STATUS_NEVER,False
 	bootstrap,boolean,False,启动状态
+
+#
+CloseSession,internal,13,通知网关服关闭客户端,STATUS_NEVER,False
+	fd,int,False,客户端
 
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
