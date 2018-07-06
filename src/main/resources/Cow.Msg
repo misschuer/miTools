@@ -23,9 +23,8 @@ CreateConnection,internal,5,客户端连接进来了,STATUS_NEVER,False
 
 #
 OperationResult,external,6,操作结果,STATUS_NEVER,False
-	type,short,False,操作类型
-	reason,short,False,造成结果的原因
-	data,String,False,参数
+	type,int,False,操作类型(填表)
+	data,String,False,参数(如果需要填充的话)
 
 #
 DestroyConnection,internal,7,销毁fd,STATUS_NEVER,False
@@ -45,7 +44,8 @@ ServerStartFinishMsg,internal,12,通知网关服启动完成,STATUS_NEVER,False
 
 #
 CloseSession,internal,13,通知网关服关闭客户端,STATUS_NEVER,False
-	fd,int,False,客户端
+	fd,int,False,客户端fd
+	reasonType,int,False,关闭类型,0:表示无
 
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
