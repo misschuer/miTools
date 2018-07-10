@@ -13,3 +13,13 @@ CharCreateInfo,玩家角色创建选择信息
 	guid,String,0,唯一id
 	headId,int,0,头像
 	hairId,int,0,发型ID
+
+#binlog数据
+BinlogInfo,binlog数据
+	state,int,0,操作类型(新建,更新)
+	binlogId,String,0,数据id
+	uintId,int,0,整形id
+	intMask,int,1,int类型掩码
+	strMask,int,1,str类型掩码
+	intValues,int,1,int类型数据(确保有序)
+	strValues,String,1,str类型数据(确保有序)

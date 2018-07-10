@@ -85,9 +85,9 @@ public class ${className} extends PacketImpl  {
 		<#list fields as field>
 		<#if field.isStru>
 		<#if field.isList>
-		int size = buffer.readUnsignedShort();
-		this.${field.name} = new ArrayList<>(size);
-		for (int i = 0; i < size; ++ i) {
+		int ${field.name}Size = buffer.readUnsignedShort();
+		this.${field.name} = new ArrayList<>(${field.name}Size);
+		for (int i = 0; i < ${field.name}Size; ++ i) {
 			${field.type} element = new ${field.type}();
 			element.decode(buffer);
 			this.${field.name}.add(element);
@@ -98,9 +98,9 @@ public class ${className} extends PacketImpl  {
 		</#if>
 		<#elseif field.type == "String">
 		<#if field.isList>
-		int size = buffer.readUnsignedShort();
-		this.${field.name} = new ArrayList<>(size);
-		for (int i = 0; i < size; ++ i) {
+		int ${field.name}Size = buffer.readUnsignedShort();
+		this.${field.name} = new ArrayList<>(${field.name}Size);
+		for (int i = 0; i < ${field.name}Size; ++ i) {
 			${field.type} element = StringCoder.readString(buffer);
 			this.${field.name}.add(element);
 		}
@@ -109,9 +109,9 @@ public class ${className} extends PacketImpl  {
 		</#if>
 		<#else>
 		<#if field.isList>
-		int size = buffer.readUnsignedShort();
-		this.${field.name} = new ArrayList<>(size);
-		for (int i = 0; i < size; ++ i) {
+		int ${field.name}Size = buffer.readUnsignedShort();
+		this.${field.name} = new ArrayList<>(${field.name}Size);
+		for (int i = 0; i < ${field.name}Size; ++ i) {
 			${field.type} element = buffer.read${field.type?cap_first}();
 			this.${field.name}.add(element);
 		}
