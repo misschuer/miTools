@@ -90,6 +90,7 @@ public class ProrocolTools {
 			return;
 		}
 		boolean hasString = false;
+		boolean hasList = false;
 		List<Map<String, Object>> fields = new ArrayList<>();
 		for (int i = 2; i < list.size(); ++ i) {
 			Map<String, Object> field = new HashMap<>();
@@ -100,12 +101,16 @@ public class ProrocolTools {
 				comment = params[ 3 ];
 			}
 			field.put("comment", comment);
+			field.put("isList", "1".equals(params[ 2 ]));
 			field.put("type", params[ 1 ]);
 			field.put("name", params[ 0 ]);
 			fields.add(field);
 			
 			if ("String".equals(params[ 1 ])) {
 				hasString = true;
+			}
+			if ("1".equals(params[ 2 ])) {
+				hasList = true;
 			}
 		}
 		Map<String, Object> hash = new HashMap<>();
@@ -115,6 +120,7 @@ public class ProrocolTools {
 		hash.put("package", struPackagePath);
 		hash.put("fields", fields);
 		hash.put("hasString", hasString);
+		hash.put("hasList", hasList);
 
 		classNameSet.add(params[ 0 ]);
 		logger.info("doing " + params[ 0 ]);

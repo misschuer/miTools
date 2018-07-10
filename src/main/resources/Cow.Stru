@@ -13,3 +13,9 @@ CharCreateInfo,玩家角色创建选择信息
 	guid,String,0,唯一id
 	headId,int,0,头像
 	hairId,int,0,发型ID
+
+#binlog数据
+BinlogInfo,binlog数据
+	ddd,String,1,名称
+	ff,int,1,房东
+	gg,String,0,这样
