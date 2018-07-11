@@ -49,16 +49,11 @@ CloseSession,internal,13,通知网关服关闭客户端,STATUS_NEVER,False
 
 #
 BinlogDataModify,internal,15,对象更新,STATUS_NEVER,False
-	state,int,False,操作类型(新建,更新)
-	binlogId,String,False,数据id
-	intMask,int,True,int类型掩码
-	strMask,int,True,str类型掩码
-	intValues,int,True,int类型数据(确保有序)
-	strValues,String,True,str类型数据(确保有序)
+	binlogDataList,BinlogInfo,True,改变量对象
 
 #
 UnitBinlogDataModify,internal,16,场景元素对象更新,STATUS_NEVER,False
-	binlogInfoList,BinlogInfo,True,场景元素对象
+	unitBinlogDataList,UnitBinlogInfo,True,场景元素对象
 
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
