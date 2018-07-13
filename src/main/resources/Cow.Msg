@@ -66,6 +66,16 @@ AddTagWatchAndCall,internal,18,添加整组binlog并发送,STATUS_NEVER,False
 	ownerTag,String,False,需要注册的binlog拥有者id
 
 #
+AddWatch,internal,19,添加binlog,STATUS_NEVER,False
+	fd,int,False,需要注册的fd(0:表示消息发来的服务器,其他表示客户端)
+	guidType,String,False,需要注册的binlogId
+
+#
+AddTagWatch,internal,20,添加整组binlog,STATUS_NEVER,False
+	fd,int,False,需要注册的fd(0:表示消息发来的服务器,其他表示客户端)
+	ownerTag,String,False,需要注册的binlog拥有者id
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
