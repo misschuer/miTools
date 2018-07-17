@@ -48,6 +48,9 @@ CloseSession,internal,13,通知网关服关闭客户端,STATUS_NEVER,False
 	reasonType,int,False,关闭类型,0:表示无
 
 #
+StartReady,internal,14,通知中心服服务器启动完毕,STATUS_NEVER,False
+
+#
 BinlogDataModify,internal,15,对象更新,STATUS_NEVER,False
 	binlogDataList,BinlogInfo,True,改变量对象
 
@@ -74,6 +77,16 @@ AddWatch,internal,19,添加binlog,STATUS_NEVER,False
 AddTagWatch,internal,20,添加整组binlog,STATUS_NEVER,False
 	fd,int,False,需要注册的fd(0:表示消息发来的服务器,其他表示客户端)
 	ownerTag,String,False,需要注册的binlog拥有者id
+
+#
+PutObjects,internal,21,对象提交,STATUS_NEVER,False
+	ownerId,String,False,所属主人
+	binlogDataList,BinlogInfo,True,binlog对象
+
+#
+PutObject,internal,22,对象提交,STATUS_NEVER,False
+	ownerId,String,False,所属主人
+	binlogData,BinlogInfo,False,binlog对象
 
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
