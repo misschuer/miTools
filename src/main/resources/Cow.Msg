@@ -52,11 +52,11 @@ StartReady,internal,14,通知中心服服务器启动完毕,STATUS_NEVER,False
 
 #
 BinlogDataModify,internal,15,对象更新,STATUS_NEVER,False
-	binlogDataList,BinlogInfo,True,改变量对象
+	binlogInfoList,BinlogInfo,True,改变量对象
 
 #
 UnitBinlogDataModify,internal,16,场景元素对象更新,STATUS_NEVER,False
-	unitBinlogDataList,UnitBinlogInfo,True,场景元素对象
+	unitBinlogInfoList,UnitBinlogInfo,True,场景元素对象
 
 #
 AddWatchAndCall,internal,17,添加binlog并发送,STATUS_NEVER,False
