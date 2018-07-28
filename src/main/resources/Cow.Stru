@@ -8,11 +8,7 @@ ItemRewardInfo,道具奖励信息
 #玩家角色创建选择信息
 CharCreateInfo,玩家角色创建选择信息
 	name,String,0,名称
-	gender,byte,0,角色类别
-	level,short,0,等级
-	guid,String,0,唯一id
-	headId,int,0,头像
-	hairId,int,0,发型ID
+	modelId,byte,0,模型
 
 #binlog数据
 BinlogInfo,binlog数据
@@ -32,3 +28,12 @@ UnitBinlogInfo,binlog数据
 	strMask,int,1,str类型掩码
 	intValues,int,1,int类型数据(确保有序)
 	strValues,String,1,str类型数据(确保有序)
+
+# 角色精简数据
+CharInfo,角色精简数据
+	accountName,String,0,账号
+	guid,String,0,角色guid
+	name,String,0,角色名称
+	modelId,byte,0,模型id
+	level,int,0,角色等级
+	
