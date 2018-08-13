@@ -101,6 +101,13 @@ PlayerLogin,external,25,玩家登录,STATUS_NEVER,False
 	guid,String,False,角色的guid
 
 #
+CreateMap,internal,26,创建地图,STATUS_NEVER,False
+	instId,int,False,实例id
+	mapId,int,False,地图模板id
+	lineNo,int,False,分线号
+	ext,String,False,地图参数
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
