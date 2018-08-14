@@ -36,4 +36,16 @@ CharInfo,角色精简数据
 	name,String,0,角色名称
 	modelId,byte,0,模型id
 	level,int,0,角色等级
-	
+
+# 元素移动数据
+SceneElementMoveInfo,元素移动数据
+	uintId,int,0,整形id
+	startX,short,0,初始位置x
+	startY,short,0,初始位置y
+	path,byte,1,路径
+
+# 元素跳跃数据
+SceneElementJumpInfo,元素跳跃数据
+	uintId,int,0,整形id
+	destX,short,0,目标位置x
+	destY,short,0,目标位置y
