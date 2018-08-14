@@ -108,6 +108,14 @@ CreateMap,internal,26,创建地图,STATUS_NEVER,False
 	ext,String,False,地图参数
 
 #
+ReleaseBinlogData,internal,27,对象删除,STATUS_NEVER,False
+	binlogIdList,String,True,删除的binlogid
+
+#
+ReleaseUnitBinlogData,internal,28,场景元素对象删除,STATUS_NEVER,False
+	unitUintIdList,int,True,删除的uintid
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
