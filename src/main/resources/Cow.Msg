@@ -116,6 +116,16 @@ ReleaseUnitBinlogData,internal,28,场景元素对象删除,STATUS_NEVER,False
 	unitUintIdList,int,True,删除的uintid
 
 #
+JoinMapMsg,internal,29,玩家加入地图,STATUS_NEVER,False
+	fd,int,False,客户端连接的fd
+	ownerId,String,False,玩家id
+	teleMapId,int,False,传送地图id
+	instId,int,False,地图实例id
+	x,float,False,x坐标
+	y,float,False,y坐标
+	sign,byte,False,传送标志
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
