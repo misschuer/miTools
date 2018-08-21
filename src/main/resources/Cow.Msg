@@ -126,6 +126,13 @@ JoinMapMsg,internal,29,玩家加入地图,STATUS_NEVER,False
 	sign,byte,False,传送标志
 
 #
+InnerServerConnList,internal,30,内部服务器列表,STATUS_NEVER,False
+	loginConn,int,False,登录服连接的fd
+	appConn,int,False,应用服连接的fd
+	recordConn,int,False,日志服连接的fd
+	sceneConns,int,True,场景服连接的fd
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
