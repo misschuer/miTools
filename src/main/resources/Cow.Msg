@@ -133,6 +133,11 @@ InnerServerConnList,internal,30,内部服务器列表,STATUS_NEVER,False
 	sceneConns,int,True,场景服连接的fd
 
 #
+PlayerLoginMsg,internal,31,玩家登陆,STATUS_NEVER,False
+	clientFd,int,False,客户端连接的fd
+	guid,String,False,玩家guid
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
