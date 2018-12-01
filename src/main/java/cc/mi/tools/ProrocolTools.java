@@ -44,7 +44,7 @@ public class ProrocolTools {
 		cfg.setDirectoryForTemplateLoading(new File(url.getPath()));
 		
 		classNameSet = new HashSet<>();
-		// 先加载结构体
+		// 先加结构体
 		loadStru();
 		// 加载消息
 		loadMsg();
@@ -170,7 +170,7 @@ public class ProrocolTools {
 	}
 	
 	private static void parseMsg(List<String> list, Map<Integer, OpcodeInfo> opcodeHash) throws TemplateNotFoundException, MalformedTemplateNameException, ParseException, IOException, TemplateException {
-		// 小于4行就不需要有结构体
+		// 小于4行就不需要结构体
 		if (list.size() < 2) {
 			return;
 		}
