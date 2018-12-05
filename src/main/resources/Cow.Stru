@@ -49,3 +49,14 @@ SceneElementJumpInfo,元素跳跃数据
 	uintId,int,0,整形id
 	destX,short,0,目标位置x
 	destY,short,0,目标位置y
+
+# 地图数据
+MapInfo,地图数据
+	binlogId,String,0,地图唯一id
+	mapId,int,0,地图id
+	instId,int,0,实例id
+	lineNo,int,0,分线号
+	createTime,int,0,创建时间
+	instType,int,0,实例类型
+	ext,String,0,参数
+	

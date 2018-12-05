@@ -162,6 +162,14 @@ DelTagWatch,internal,36,删除注册监听,STATUS_NEVER,False
 	ownerTag,String,False,需要注册的binlog拥有者id
 
 #
+MapCreateMsg,internal,37,创建地图,STATUS_NEVER,False
+	mapInfo,MapInfo,False,地图信息
+	
+#
+MapDeleteMsg,internal,38,删除地图,STATUS_NEVER,False
+	binlogId,String,False,地图唯一id
+
+#
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
 	state,byte,False,副本状态(249:副本失败 250:副本通关 251:副本未通关)
 	cd,byte,False,副本cd
