@@ -151,6 +151,15 @@ PlayerLeaveMap,internal,33,玩家离开地图,STATUS_NEVER,False
 DeleteMap,internal,34,删除地图,STATUS_NEVER,False
 	instId,int,False,实例id
 	mapId,int,False,地图模板id
+	
+#
+QueuingMsg,internal,35,排队名次,STATUS_NEVER,False
+	index,int,False,排队名次
+
+#
+DelTagWatchAndCall,internal,36,删除注册监听,STATUS_NEVER,False
+	fd,int,False,需要注册的fd(0:表示消息发来的服务器,其他表示客户端)
+	ownerTag,String,False,需要注册的binlog拥有者id
 
 #
 InstanceResult,external,375,副本结果,STATUS_NEVER,False
